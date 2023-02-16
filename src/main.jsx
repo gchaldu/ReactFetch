@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import {FetchApp} from './FetchApp'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  //<React.StrictMode>
     <FetchApp />
-  </React.StrictMode>,
+  //</React.StrictMode>,
 )

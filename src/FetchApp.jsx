@@ -1,5 +1,7 @@
 import { useFetch } from "./hooks/useFetch"
-import { useCounter } from "./hooks/useCounter";
+import { useCounter } from "./hooks/useCounter"
+import { LoadingQuote } from './LoadingQuote'
+import { Quote } from "./Quote";
 
 export const FetchApp = () => {
 
@@ -7,17 +9,17 @@ export const FetchApp = () => {
     const { data, isLoading, hasError } = useFetch(`https://api.breakingbadquotes.xyz/v1/quotes/${counter}`);
     //console.log({data, isLoading, hasError})
     const { author, quote } = !!data && data[0];
+    console.log("Data solo " + data);
+    console.log("Data una sola negación " + !data);
+    console.log("Data dos negaciones " + !!data);
     return (
         <>
             <h1>Fetch App</h1>
             <hr />
             {
                 isLoading === true
-                    ? (<div className="alert alert-info text-center">Cargando...</div>)
-                    : <blockquote className="blockquote text-end">
-                        <p className="mb-10">{quote}</p>
-                        <footer className="blockquote-footer text-center">{author}</footer>
-                    </blockquote>
+                    ? (<LoadingQuote />)
+                    : <Quote quote={quote} author={author}/>
             }
             <button onClick={() => decrement()} className="btn btn-primary m-2" disabled={isLoading}>Anterior quote</button>
             <button onClick={() => increment()} className="btn btn-primary m-2" disabled={isLoading}>Next quote</button>
